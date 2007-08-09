@@ -1,0 +1,32 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1539
+
+This plugin gives you the capability to mark up your files as if you had a highlighter.
+
+It's a really useful aid for inspecting log files and marking important sections in source code and documents (even vim help files).
+
+The highlights are remembered, even after you close the file. You can also distribute the marks so others can see the highlights you've made.
+
+There are a number of different highlighters available for use. (NOTE: you will probably want to create mappings for these commands)
+:WordHighlighter
+Highlight the word under the cursor
+
+:SelectionHighlighter
+Highlight the current selection. A visual mapping for this command is recommended.
+
+:SearchPatternHighlighter
+Highlight the current search pattern.
+
+:ClearAllHighlighters
+Clear all highlights made in this file.
+
+:ClearCurrentHighligher
+Clear the Highlighter under the cursor
+
+:ConfigureHighlighter
+Open the configure window. From here you can configure how the highlighter colors are determined - randomized, use a favorite color, etc.
+
+Look under Plugin->Highlighter for more options.
+
+The highlighter only works with gvim and 'syntax' must be on.  Also, the terminal must support vim colors in the format #rrggbb.
+
+Comments/suggestions/complaints are gladly taken.
