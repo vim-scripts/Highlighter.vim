@@ -1,7 +1,7 @@
 " Utility: highlighter.vim
-" Author:  Dave Larson       silverleaf at bluebottle dot com
-" Version: 1.3
-" $Date: 2007/08/09 21:39:06 $
+" Author:  David Larson      silverleaf at bluebottle dot com
+" Version: 1.4
+" $Date: 2007/08/10 18:45:03 $
 "
 " This plugin gives you the capability to mark up your files as if you had a
 " highlighter.
@@ -125,7 +125,8 @@ function s:startup() " {{{2
    call s:createMenu()
 
    " restore the settings file
-   let s:settingsfile = findfile(".highlighter_settings.vim", &rtp)
+   let p = substitute(&rtp, " ", '\\\\\ ', "g")
+   let s:settingsfile = findfile(".highlighter_settings.vim", p)
    if (empty(s:settingsfile))
       " a settings file doesn't exist - create it.
       call s:createSettingsFile()
