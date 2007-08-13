@@ -1,7 +1,7 @@
 " Utility: highlighter.vim
 " Author:  David Larson      silverleaf at bluebottle dot com
-" Version: 1.4
-" $Date: 2007/08/10 18:45:03 $
+" Version: 1.5
+" $Date: 2007/08/13 21:22:12 $
 "
 " This plugin gives you the capability to mark up your files as if you had a
 " highlighter.
@@ -109,7 +109,7 @@ let s:attributes     = [ "bold", "underline", "undercurl", "reverse", "italic", 
 " }}}1
 " Startup/Mappings {{{1
 command        WordHighlighter          call <SID>highlight(expand("<cword>"), "")
-command -range SelectionHighlighter     call <SID>highlight(@*, "v")
+command -range SelectionHighlighter     call <SID>selection()
 command        SearchPatternHighlighter call <SID>highlight(@/, "s")
 command        ClearAllHighlighters     call <SID>clearAll()
 command        ClearCurrentHighlighter  call <SID>clearCurrentHighlighter()
@@ -120,7 +120,7 @@ function s:startup() " {{{2
    au BufRead * call s:checkForHighlightFile()
    let s:current_color = s:default_color
    let s:cursor_moved = 1
-   set guioptions+=a
+   " set guioptions+=a
 
    call s:createMenu()
 
@@ -239,6 +239,16 @@ function s:highlight(text, opts) " {{{2
       let s:cursor_moved = 0
    endif
 endfunction " }}}2
+function s:selection()
+   if (&go =~ "a")
+      call s:highlight(@*, "v")
+   else
+      let a = @a
+      silent normal! gv"ay
+      call s:highlight(@a, "v")
+      let @a = a
+   endif
+endfunction
 function s:newHighlighter(color, pat) " {{{2
    let ID = "Highlighter".s:ID
    let b:used[ID] = [a:color, a:pat]
